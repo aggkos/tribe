@@ -19,7 +19,7 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
   },
-  "homepage": "https://aggkos.github.io/my-architect-portfolio",
+  "homepage": "https://aggkos.github.io/architect-portfolio",
   "eslintConfig": {
     "extends": [
       "react-app",
