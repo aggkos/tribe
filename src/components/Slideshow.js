@@ -19,7 +19,7 @@ export default function ProjectModal({ project, closeModal }) {
       }}
     >
       <div
-        className="bg-white rounded-lg overflow-hidden shadow-lg max-w-3xl w-full max-h-[90vh] flex flex-col"
+        className="bg-white rounded-lg overflow-hidden shadow-lg max-w-3xl w-full max-h-[90vh] flex flex-col overflow-y-auto"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex justify-between items-center p-4 border-b">
@@ -50,8 +50,8 @@ export default function ProjectModal({ project, closeModal }) {
           </div>
         </div>
 
-        {/* This is where the modal content becomes scrollable if it overflows */}
-        <div className="px-4 pb-4 overflow-y-auto flex-1">
+        {/* The entire modal content becomes scrollable now */}
+        <div className="px-4 pb-4 flex-1">
           <h3 className="text-xl font-semibold text-gray-800 mb-2">Project Overview</h3>
           <p className="text-gray-700 mb-6">{project.detailedDescription.overview}</p>
 
