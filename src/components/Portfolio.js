@@ -33,9 +33,14 @@ export default function Portfolio({ projects, openModal }) {
                 />
               
                 {/* Overlay for title and description */}
-                <div className="absolute inset-0 flex flex-col justify-center items-center bg-black bg-opacity-50 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 group-active:opacity-100">
-                  <h3 className="text-2xl font-semibold mb-4">{project.title}</h3>
-                  <p className="px-4">{project.description}</p>
+                <div className="absolute top-0 left-0 p-4 bg-opacity-30 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 group-active:opacity-100">
+                  <p 
+                    className="text-lg font-light font-sans text-white mb-8" 
+                    style={{
+                      textShadow: "2px 2px 4px rgba(0, 0, 0, 0.7)", // Adding a shadow to the text
+                    }}>
+                    {project.title}
+                  </p>
                 </div>
               </div>
             

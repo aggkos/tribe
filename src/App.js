@@ -27,7 +27,7 @@ export default function Home() {
   const projects = [
     {
       id: 1,
-      title: "Urban House",
+      title: "APARTMENT / MILAN, 2023",
       description: "A modern residential design featuring sustainable materials and open spaces.",
       images: ["/images/project1.jpg", "/images/project2.jpg"],
       detailedDescription: {
@@ -46,7 +46,7 @@ export default function Home() {
     },
     {
       id: 2,
-      title: "City Skyscraper",
+      title: "APARTMENT / MILAN, 2023",
       description: "An innovative skyscraper with a focus on energy efficiency and urban integration.",
       images: ["/images/project3.jpg", "/images/project5.jpg"],
       detailedDescription: {
@@ -64,7 +64,7 @@ export default function Home() {
     },
     {
       id: 3,
-      title: "City Skyscraper",
+      title: "APARTMENT / MILAN, 2023",
       description: "An innovative skyscraper with a focus on energy efficiency and urban integration.",
       images: ["/images/project3.jpg", "/images/project5.jpg"],
       detailedDescription: {
@@ -82,7 +82,7 @@ export default function Home() {
     },
     {
       id: 4,
-      title: "City Skyscraper",
+      title: "APARTMENT / MILAN, 2023",
       description: "An innovative skyscraper with a focus on energy efficiency and urban integration.",
       images: ["/images/project3.jpg", "/images/project5.jpg"],
       detailedDescription: {
@@ -100,7 +100,7 @@ export default function Home() {
     },
     {
       id: 5,
-      title: "City Skyscraper",
+      title: "APARTMENT / MILAN, 2023",
       description: "An innovative skyscraper with a focus on energy efficiency and urban integration.",
       images: ["/images/project3.jpg", "/images/project5.jpg"],
       detailedDescription: {
@@ -118,7 +118,7 @@ export default function Home() {
     },
     {
       id: 6,
-      title: "City Skyscraper",
+      title: "APARTMENT / MILAN, 2023",
       description: "An innovative skyscraper with a focus on energy efficiency and urban integration.",
       images: ["/images/project3.jpg", "/images/project5.jpg"],
       detailedDescription: {
