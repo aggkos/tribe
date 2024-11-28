@@ -62,6 +62,78 @@ export default function Home() {
         ]
       }
     },
+    {
+      id: 3,
+      title: "City Skyscraper",
+      description: "An innovative skyscraper with a focus on energy efficiency and urban integration.",
+      images: ["/images/project3.jpg", "/images/project5.jpg"],
+      detailedDescription: {
+        overview: "The City Skyscraper stands as a beacon of modernity and sustainability, featuring cutting-edge architectural elements...",
+        designFeatures: [
+          "Smart glass windows for energy conservation",
+          "Green rooftop gardens",
+          "Integration with public transportation systems"
+        ],
+        process: "The project began with feasibility studies, followed by extensive design workshops with stakeholders...",
+        testimonials: [
+          "An exceptional structure that integrates seamlessly with the urban environment while promoting sustainability."
+        ]
+      }
+    },
+    {
+      id: 4,
+      title: "City Skyscraper",
+      description: "An innovative skyscraper with a focus on energy efficiency and urban integration.",
+      images: ["/images/project3.jpg", "/images/project5.jpg"],
+      detailedDescription: {
+        overview: "The City Skyscraper stands as a beacon of modernity and sustainability, featuring cutting-edge architectural elements...",
+        designFeatures: [
+          "Smart glass windows for energy conservation",
+          "Green rooftop gardens",
+          "Integration with public transportation systems"
+        ],
+        process: "The project began with feasibility studies, followed by extensive design workshops with stakeholders...",
+        testimonials: [
+          "An exceptional structure that integrates seamlessly with the urban environment while promoting sustainability."
+        ]
+      }
+    },
+    {
+      id: 5,
+      title: "City Skyscraper",
+      description: "An innovative skyscraper with a focus on energy efficiency and urban integration.",
+      images: ["/images/project3.jpg", "/images/project5.jpg"],
+      detailedDescription: {
+        overview: "The City Skyscraper stands as a beacon of modernity and sustainability, featuring cutting-edge architectural elements...",
+        designFeatures: [
+          "Smart glass windows for energy conservation",
+          "Green rooftop gardens",
+          "Integration with public transportation systems"
+        ],
+        process: "The project began with feasibility studies, followed by extensive design workshops with stakeholders...",
+        testimonials: [
+          "An exceptional structure that integrates seamlessly with the urban environment while promoting sustainability."
+        ]
+      }
+    },
+    {
+      id: 6,
+      title: "City Skyscraper",
+      description: "An innovative skyscraper with a focus on energy efficiency and urban integration.",
+      images: ["/images/project3.jpg", "/images/project5.jpg"],
+      detailedDescription: {
+        overview: "The City Skyscraper stands as a beacon of modernity and sustainability, featuring cutting-edge architectural elements...",
+        designFeatures: [
+          "Smart glass windows for energy conservation",
+          "Green rooftop gardens",
+          "Integration with public transportation systems"
+        ],
+        process: "The project began with feasibility studies, followed by extensive design workshops with stakeholders...",
+        testimonials: [
+          "An exceptional structure that integrates seamlessly with the urban environment while promoting sustainability."
+        ]
+      }
+    },
     // More projects
   ];
   
@@ -69,10 +141,10 @@ export default function Home() {
   return (
     <div>
       {/* <Header /> */}
-      <Hero />
-      <About />
+      {/* <Hero /> */}
+      {/* <About /> */}
       <Portfolio projects={projects} openModal={openModal} />
-      <Contact />
+      {/* <Contact /> */}
       <Footer />
       {isModalOpen && activeProject && (
         <Slideshow project={activeProject} closeModal={closeModal} />
