@@ -16,7 +16,7 @@ export default function Portfolio({ projects, openModal }) {
       <Hero scrollToPortfolio={scrollToPortfolio} />  {/* Pass scroll function to Hero */}
 
       {/* Portfolio Section */}
-      <section id="portfolio" ref={portfolioRef} className="py-20 bg-[#ffffff]">
+      <section id="portfolio" ref={portfolioRef} className="py-20 bg-[#eeeeee]">
         <div className="max-w-6xl mx-auto px-4 text-center">
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-12">
             {projects.map((project) => (

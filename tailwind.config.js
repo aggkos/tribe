@@ -5,7 +5,8 @@ module.exports = {
   ],
   theme: {
     fontFamily: {
-      sans: ['Work Sans', 'sans-serif'],
+      suisse: ['Suisse BP Medium', 'Arial', 'Helvetica', 'sans-serif'],
+      whitman: ['Whitman', 'sans-serif']
     },
   },
   plugins: [],
