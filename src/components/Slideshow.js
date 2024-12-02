@@ -42,104 +42,134 @@ export default function ProjectModal({ project, closeModal }) {
   const openMap = () => setIsMapOpen(true);
   const closeMap = () => setIsMapOpen(false);
 
+  const BackButton = ({ className }) => (
+    <button
+      onClick={closeModal}
+      className={`text-black px-4 py-2 text-sm z-60 ${className}`}
+    >
+      &larr; Back
+    </button>
+  );
+
   return (
     <div
-  className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
-  onClick={(e) => {
-    if (e.target === e.currentTarget) closeModal();
-  }}
->
-  {/* Close Button */}
-  <button
-    onClick={closeModal}
-    className="fixed top-4 right-4 z-60 bg-white text-gray-500 hover:text-gray-900 text-3xl p-2 rounded-full shadow-md"
-    title="Close"
-  >
-    &times;
-  </button>
+      className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 h-screen"
+      onClick={(e) => {
+        if (e.target === e.currentTarget) closeModal();
+      }}
+    >
+      {/* Mobile Back Button */}
+      <BackButton className="lg:hidden absolute top-2 left-2" />
 
-  <div
-    className="bg-white overflow-hidden shadow-lg w-full max-w-lg lg:max-w-[85rem] h-full lg:h-auto lg:max-h-[90vh] flex flex-col lg:flex-row"
-    onClick={(e) => e.stopPropagation()}
-    tabIndex={0}
-  >
-    {/* Slideshow Section */}
-    <div className="relative w-full lg:w-3/4 h-[40vh] lg:h-[90vh]">
-      <img
-        src={`${process.env.PUBLIC_URL}${project.images[currentImageIndex]}`}
-        alt={`${project.title} - Slide`}
-        className="w-full h-full object-cover mb-4"
-      />
-      <button
-        onClick={prevImage}
-        className="absolute left-4 top-1/2 transform -translate-y-1/2 px-4 py-2 bg-white bg-opacity-75 hover:bg-opacity-100 transition duration-200 shadow-lg"
+      <div
+        className="bg-white overflow-hidden shadow-lg max-w-full w-full max-h-full flex flex-col lg:flex-row h-screen"
+        onClick={(e) => e.stopPropagation()}
+        tabIndex={0}
       >
-        &#8592;
-      </button>
-      <button
-        onClick={nextImage}
-        className="absolute right-4 top-1/2 transform -translate-y-1/2 px-4 py-2 bg-white bg-opacity-75 hover:bg-opacity-100 transition duration-200 shadow-lg"
-      >
-        &#8594;
-      </button>
-    </div>
+        {/* Slideshow Section */}
+        <div className="relative w-full lg:w-3/4 h-[40vh] lg:h-[90vh]">
+          <img
+            src={`${process.env.PUBLIC_URL}${project.images[currentImageIndex]}`}
+            alt={`${project.title} - Slide`}
+            className="w-full h-full object-cover mb-4"
+          />
+          <div
+            onClick={prevImage}
+            className="absolute inset-y-0 left-0 w-1/4 bg-transparent hover:bg-gray-900 hover:bg-opacity-0 cursor-pointer"
+          ></div>
+          <div
+            onClick={nextImage}
+            className="absolute inset-y-0 right-0 w-1/4 bg-transparent hover:bg-gray-900 hover:bg-opacity-0 cursor-pointer"
+          ></div>
+        </div>
 
-    {/* Description Section */}
-    <div className="px-4 pb-4 flex-1 overflow-y-auto">
-      <div className="flex justify-between items-center p-4">
-        <div>
-          <h2 className="text-xl font-bold font-whitman">
-            {project.title}
-            <span className="ml-2 text-sm text-black font-whitman">{project.year}</span>
-          </h2>
-          <div className="flex items-center mt-1">
-            <button
-              onClick={openMap}
-              className="text-grey-500 hover:text-grey-700 flex items-center"
-              title="Open Map"
-            >
-              <span className="material-icons">place</span>
-            </button>
-            <p className="text-gray-500 text-xs mr-2 font-whitman">{project.address}</p>
+        {/* Description Section */}
+        <div className="px-4 pb-4 flex-1 overflow-y-auto">
+          {/* Desktop Back Button */}
+          <div className="hidden lg:block mt-4">
+            <BackButton />
+          </div>
+
+          <div className="flex justify-between items-center p-4">
+            <div>
+              <h2 className="text-xl font-bold font-whitman">
+                {project.title}
+                <span className="ml-2 text-sm text-black font-whitman">{project.year}</span>
+              </h2>
+              <div className="flex items-center mt-1">
+                <button
+                  onClick={openMap}
+                  className="text-grey-500 hover:text-grey-700 flex items-center"
+                  title="Open Map"
+                >
+                  <span className="material-icons">place</span>
+                </button>
+                <p className="text-gray-500 text-xs mr-2 font-whitman">{project.address}</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Project Details Section */}
+          <div className="px-4 pb-4">
+            <p className="text-xs text-gray-700 mb-6 font-whitman">
+              {project.detailedDescription.overview}
+            </p>
+
+            <h3 className="text-sm font-semibold text-gray-800 mb-2 font-whitman">Design Features</h3>
+            <ul className="list-disc pl-5 text-xs text-gray-700 mb-6 font-whitman">
+              {project.detailedDescription.designFeatures.map((feature, index) => (
+                <li key={index}>{feature}</li>
+              ))}
+            </ul>
+
+            <h3 className="text-sm font-semibold text-gray-800 mb-2 font-whitman">Design Process</h3>
+            <p className="text-xs text-gray-700 mb-6 font-whitman">
+              {project.detailedDescription.process}
+            </p>
+
+            {project.detailedDescription.testimonials.length > 0 && (
+              <div>
+                <h3 className="text-sm font-semibold text-gray-800 mb-2 font-whitman">Client Feedback</h3>
+                {project.detailedDescription.testimonials.map((quote, index) => (
+                  <blockquote
+                    key={index}
+                    className="border-l-4 border-gray-400 pl-4 text-xs text-gray-700 italic mb-6 font-whitman"
+                  >
+                    "{quote}"
+                  </blockquote>
+                ))}
+              </div>
+            )}
           </div>
         </div>
-      </div>
 
-      {/* Project Details Section */}
-      <div className="px-4 pb-4">
-        <p className="text-xs text-gray-700 mb-6 font-whitman">
-          {project.detailedDescription.overview}
-        </p>
-
-        <h3 className="text-sm font-semibold text-gray-800 mb-2 font-whitman">Design Features</h3>
-        <ul className="list-disc pl-5 text-xs text-gray-700 mb-6 font-whitman">
-          {project.detailedDescription.designFeatures.map((feature, index) => (
-            <li key={index}>{feature}</li>
-          ))}
-        </ul>
-
-        <h3 className="text-sm font-semibold text-gray-800 mb-2 font-whitman">Design Process</h3>
-        <p className="text-xs text-gray-700 mb-6 font-whitman">
-          {project.detailedDescription.process}
-        </p>
-
-        {project.detailedDescription.testimonials.length > 0 && (
-          <div>
-            <h3 className="text-sm font-semibold text-gray-800 mb-2 font-whitman">Client Feedback</h3>
-            {project.detailedDescription.testimonials.map((quote, index) => (
-              <blockquote
-                key={index}
-                className="border-l-4 border-gray-400 pl-4 text-xs text-gray-700 italic mb-6 font-whitman"
+        {/* Map Modal */}
+        {isMapOpen && (
+          <div
+            className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-60"
+            onClick={closeMap}
+          >
+            <div
+              className="bg-white shadow-lg w-[90vw] h-[80vh] relative"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <iframe
+                src={`https://www.openstreetmap.org/export/embed.html?bbox=${project.coordinates.lng},${project.coordinates.lat},${project.coordinates.lng},${project.coordinates.lat}&layer=mapnik&marker=${project.coordinates.lat},${project.coordinates.lng}`}
+                className="w-full h-full"
+                allowFullScreen
+                loading="lazy"
+                title="Project Map"
+              ></iframe>
+              <button
+                onClick={closeMap}
+                className="absolute top-4 right-4 text-gray-500 hover:text-gray-900 text-2xl"
               >
-                "{quote}"
-              </blockquote>
-            ))}
+                &times;
+              </button>
+            </div>
           </div>
         )}
       </div>
     </div>
-  </div>
-</div>
-
   );
 }
