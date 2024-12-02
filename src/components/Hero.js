@@ -77,12 +77,12 @@ export default function Hero({ scrollToPortfolio }) {
         <div>
           {/* Title */}
           <h1 className="text-5xl font-bold font-whitman text-[#333333] mb-4">
-            Innovative Architectural Designs
+            TRIBE
           </h1>
 
           {/* Subtitle */}
           <p className="font-light font-whitman text-[#333333] mb-8">
-            Explore inspiring architecture and creative design solutions
+            Architectural and Design Studios
           </p>
 
           {/* Minimal Button */}

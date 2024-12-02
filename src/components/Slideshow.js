@@ -1,8 +1,35 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 export default function ProjectModal({ project, closeModal }) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isMapOpen, setIsMapOpen] = useState(false);
+
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      switch (e.key) {
+        case "ArrowLeft":
+          prevImage();
+          break;
+        case "ArrowRight":
+          nextImage();
+          break;
+        case "Escape":
+          if (isMapOpen) {
+            closeMap();
+          } else {
+            closeModal();
+          }
+          break;
+        default:
+          break;
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [isMapOpen, currentImageIndex]);
 
   const nextImage = () => {
     setCurrentImageIndex((currentImageIndex + 1) % project.images.length);
@@ -22,12 +49,22 @@ export default function ProjectModal({ project, closeModal }) {
         if (e.target === e.currentTarget) closeModal();
       }}
     >
+      {/* Close Button */}
+      <button
+        onClick={closeModal}
+        className="fixed top-4 right-4 z-60 text-black text-3xl p-2"
+        title="Close"
+      >
+        &times;
+      </button>
+
       <div
-        className="bg-white overflow-hidden shadow-lg max-w-[85rem] w-full max-h-[120vh] flex"
+        className="bg-white overflow-hidden shadow-lg max-w-[85rem] w-full max-h-[120vh] flex flex-col lg:flex-row" // Responsive layout
         onClick={(e) => e.stopPropagation()}
+        tabIndex={0}
       >
         {/* Slideshow Section */}
-        <div className="relative w-3/4 h-[90vh]">
+        <div className="relative w-full lg:w-3/4 h-[40vh] lg:h-[90vh]">
           <img
             src={`${process.env.PUBLIC_URL}${project.images[currentImageIndex]}`}
             alt={`${project.title} - Slide`}
@@ -47,6 +84,7 @@ export default function ProjectModal({ project, closeModal }) {
           </button>
         </div>
 
+        {/* Description Section */}
         <div className="px-4 pb-4 flex-1 overflow-y-auto">
           <div className="flex justify-between items-center p-4">
             <div>
@@ -57,47 +95,41 @@ export default function ProjectModal({ project, closeModal }) {
               <div className="flex items-center mt-1">
                 <button
                   onClick={openMap}
-                  className="text-grey-500 hover:text-grey-700 flex items-center "
+                  className="text-grey-500 hover:text-grey-700 flex items-center"
                   title="Open Map"
                 >
                   <span className="material-icons">place</span>
                 </button>
-                <p className="text-gray-500 text-sm mr-2 font-whitman">{project.address}</p>
+                <p className="text-gray-500 text-xs mr-2 font-whitman">{project.address}</p>
               </div>
             </div>
-            <button
-              onClick={closeModal}
-              className="text-gray-500 hover:text-gray-900 text-3xl font-whitman"
-            >
-              &times;
-            </button>
           </div>
 
           {/* Project Details Section */}
-          <div className="px-4 pb-4 flex-1">
-            <p className="text-sm text-gray-700 mb-6 font-whitman">
+          <div className="px-4 pb-4">
+            <p className="text-xs text-gray-700 mb-6 font-whitman">
               {project.detailedDescription.overview}
             </p>
 
-            <h3 className="text-xl font-semibold text-gray-800 mb-2 font-whitman">Design Features</h3>
-            <ul className="list-disc pl-5 text-sm text-gray-700 mb-6 font-whitman"> {/* Smaller text size here */}
+            <h3 className="text-sm font-semibold text-gray-800 mb-2 font-whitman">Design Features</h3>
+            <ul className="list-disc pl-5 text-xs text-gray-700 mb-6 font-whitman">
               {project.detailedDescription.designFeatures.map((feature, index) => (
                 <li key={index}>{feature}</li>
               ))}
             </ul>
 
-            <h3 className="text-xl font-semibold text-gray-800 mb-2 font-whitman">Design Process</h3>
-            <p className="text-sm text-gray-700 mb-6 font-whitman"> {/* Smaller text size here */}
+            <h3 className="text-sm font-semibold text-gray-800 mb-2 font-whitman">Design Process</h3>
+            <p className="text-xs text-gray-700 mb-6 font-whitman">
               {project.detailedDescription.process}
             </p>
 
             {project.detailedDescription.testimonials.length > 0 && (
               <div>
-                <h3 className="text-xl font-semibold text-gray-800 mb-2 font-whitman">Client Feedback</h3>
+                <h3 className="text-sm font-semibold text-gray-800 mb-2 font-whitman">Client Feedback</h3>
                 {project.detailedDescription.testimonials.map((quote, index) => (
                   <blockquote
                     key={index}
-                    className="border-l-4 border-gray-400 pl-4 text-sm text-gray-700 italic mb-6 font-whitman"
+                    className="border-l-4 border-gray-400 pl-4 text-xs text-gray-700 italic mb-6 font-whitman"
                   >
                     "{quote}"
                   </blockquote>
