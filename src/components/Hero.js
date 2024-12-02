@@ -77,7 +77,7 @@ export default function Hero({ scrollToPortfolio }) {
         <div>
           {/* Title */}
           <h1 className="text-5xl font-bold font-whitman text-[#333333] mb-4">
-            TRIBE
+            TRIBE.
           </h1>
 
           {/* Subtitle */}
