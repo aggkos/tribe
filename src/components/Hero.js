@@ -41,35 +41,41 @@ export default function Hero({ scrollToPortfolio }) {
     <section className="relative w-full h-screen bg-[#eeeeee]">
       {/* Fixed Hamburger Menu Button */}
       <div className="relative z-50">
-        <button
-          onClick={toggleMenu}
-          className={`p-4 bg-[#eeeeee] text-[#333333] transition-all duration-300 ${isSticky ? 'fixed top-0 left-0 z-50' : ''}`}
+      <button
+        onClick={toggleMenu}
+        className={`p-4 bg-transparent text-[#333333] transition-all duration-300 ${isSticky ? 'fixed top-0 left-0 z-50' : ''}`}
+      >
+        {/* Hamburger Icon with rotation transition */}
+        <span
+          className={`material-icons transition-transform duration-300 ${isMenuOpen ? 'rotate-90' : ''}`}
         >
-          {/* Hamburger Icon with rotation transition */}
-          <span
-            className={`material-icons transition-transform duration-300 ${isMenuOpen ? 'rotate-90' : ''}`}
-          >
-            menu
-          </span>
-        </button>
+          menu
+        </span>
+      </button>
 
-        {/* Fixed Menu Items (appear below the button when open) */}
-        {isMenuOpen && (
-          <div
-            className={`fixed top-[60px] left-4 bg-[#eeeeee] w-48 z-40 transition-all duration-300 opacity-100`}
-          >
-            <ul className="flex flex-col">
-              {["PORTFOLIO", "ABOUT", "CONTACT"].map((text, index) => (
-                <li
-                  key={text}
-                  className={`p-2 font-whitman text-sm ${menuItemsVisible[index] ? 'opacity-100' : 'opacity-0'} transition-opacity duration-500 ease-in-out`}
-                >
-                  <button>{text}</button>
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
+      {/* Fixed Menu Items (appear below the button when open) */}
+      {isMenuOpen && (
+        <div
+          className={`fixed top-[60px] left-4 bg-transparent w-48 z-40 transition-all duration-300 opacity-100`}
+        >
+          <ul className="flex flex-col">
+            {["PORTFOLIO", "ABOUT", "CONTACT"].map((text, index) => (
+              <li
+                key={text}
+                className={`p-2 font-whitman ${menuItemsVisible[index] ? 'opacity-100' : 'opacity-0'} transition-opacity duration-500 ease-in-out`}
+              >
+                {/* Button with text shadow to ensure visibility */}
+                <button className="text-[#333333] text-shadow">
+                  {text}
+                </button>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+
+
+
       </div>
 
       {/* Content */}

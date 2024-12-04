@@ -1,8 +1,17 @@
 import React, { useState, useEffect } from "react";
+import { useSwipeable } from "react-swipeable";
 
 export default function ProjectModal({ project, closeModal }) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isMapOpen, setIsMapOpen] = useState(false);
+
+  // Hide scrollbar when modal is open
+  useEffect(() => {
+    document.body.style.overflow = "hidden"; // Disable scrolling
+    return () => {
+      document.body.style.overflow = ""; // Reset scrolling
+    };
+  }, []);
 
   useEffect(() => {
     const handleKeyDown = (e) => {
@@ -51,28 +60,36 @@ export default function ProjectModal({ project, closeModal }) {
     </button>
   );
 
+  const swipeHandlers = useSwipeable({
+    onSwipedLeft: nextImage,
+    onSwipedRight: prevImage,
+    preventScrollOnSwipe: true,
+    trackMouse: true, // Enables swipe on desktop for testing
+  });
+
   return (
     <div
-      className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 h-screen"
+      className="fixed inset-0 flex justify-center z-50"
       onClick={(e) => {
         if (e.target === e.currentTarget) closeModal();
       }}
     >
-      {/* Mobile Back Button */}
-      <BackButton className="lg:hidden absolute top-2 left-2" />
-
       <div
-        className="bg-white overflow-hidden shadow-lg max-w-full w-full max-h-full flex flex-col lg:flex-row h-screen"
+        className="bg-white flex flex-col lg:flex-row"
         onClick={(e) => e.stopPropagation()}
         tabIndex={0}
       >
         {/* Slideshow Section */}
-        <div className="relative w-full lg:w-3/4 h-[40vh] lg:h-[90vh]">
+        <div
+          className="relative w-full lg:w-3/4 h-[50vh] lg:h-[95vh]"
+          {...swipeHandlers} // Attach swipe handlers
+        >
           <img
             src={`${process.env.PUBLIC_URL}${project.images[currentImageIndex]}`}
             alt={`${project.title} - Slide`}
             className="w-full h-full object-cover mb-4"
           />
+          {/* Navigation Buttons */}
           <div
             onClick={prevImage}
             className="absolute inset-y-0 left-0 w-1/4 bg-transparent hover:bg-gray-900 hover:bg-opacity-0 cursor-pointer"

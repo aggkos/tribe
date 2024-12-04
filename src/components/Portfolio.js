@@ -16,22 +16,22 @@ export default function Portfolio({ projects, openModal }) {
       <Hero scrollToPortfolio={scrollToPortfolio} />  {/* Pass scroll function to Hero */}
 
       {/* Portfolio Section */}
-      <section id="portfolio" ref={portfolioRef} className="py-20 bg-[#eeeeee]">
-        <div className="max-w-6xl mx-auto px-4 text-center">
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-12">
+      <section id="portfolio" ref={portfolioRef} className="bg-[#eeeeee]">
+      <div className="mx-8 px-12 lg:mx-16 lg:px-24 text-center">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
             {projects.map((project) => (
               <div
                 key={project.id}
-                className="relative bg-gray-100 overflow-hidden shadow-xl transform scale-150 group hover:scale-110 active:scale-110 transition duration-300 cursor-pointer group"
+                className="relative bg-gray-100 overflow-hidden shadow-xl transform scale-100 group hover:scale-95 active:scale-95 transition duration-300 cursor-pointer group"
                 onClick={() => openModal(project)}
               >
                 {/* Image with grayscale filter and hover/active effect */}
                 <img
                   src={`${process.env.PUBLIC_URL}${project.images[0]}`}
                   alt={project.title}
-                  className="w-full h-64 object-cover transition duration-300 filter grayscale group-hover:grayscale-0"
+                  className="w-full object-cover transition duration-300 filter grayscale group-hover:grayscale-0"
+                  style={{ aspectRatio: '1', height: 'auto' }} // Make the image square
                 />
-              
                 {/* Overlay for title and description */}
                 <div className="absolute top-0 left-0 p-4 bg-opacity-30 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 group-active:opacity-100">
                   <p 
@@ -43,11 +43,11 @@ export default function Portfolio({ projects, openModal }) {
                   </p>
                 </div>
               </div>
-            
             ))}
           </div>
         </div>
       </section>
     </div>
+
   );
 }
