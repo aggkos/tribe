@@ -103,7 +103,7 @@ export default function ProjectModal({ project, closeModal }) {
         {/* Description Section */}
         <div className="px-4 pb-4 flex-1 overflow-y-auto">
           {/* Desktop Back Button */}
-          <div className="hidden lg:block mt-4">
+          <div className="mt-4">
             <BackButton />
           </div>
 

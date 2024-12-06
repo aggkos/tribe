@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 export default function Hero({ scrollToPortfolio }) {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [menuItemsVisible, setMenuItemsVisible] = useState([false, false, false]);
-  const [isSticky, setIsSticky] = useState(false); // State for sticky effect
+  const [isSticky, setIsSticky] = useState(false); // State for sticky navbar
 
   // Function to handle scroll events
   const handleScroll = () => {
@@ -19,63 +17,32 @@ export default function Hero({ scrollToPortfolio }) {
     return () => window.removeEventListener("scroll", handleScroll); // Clean up on component unmount
   }, []);
 
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-    if (!isMenuOpen) {
-      // Make each list item appear after a delay
-      menuItemsVisible.forEach((_, index) => {
-        setTimeout(() => {
-          setMenuItemsVisible(prev => {
-            const newState = [...prev];
-            newState[index] = true;
-            return newState;
-          });
-        }, 200 * (index + 1)); // Adjust delay timing here
-      });
-    } else {
-      setMenuItemsVisible([false, false, false]); // Reset visibility when menu is closed
-    }
-  };
-
   return (
     <section className="relative w-full h-screen bg-[#eeeeee]">
-      {/* Fixed Hamburger Menu Button */}
-      <div className="relative z-50">
-      <button
-        onClick={toggleMenu}
-        className={`p-4 bg-transparent text-[#333333] transition-all duration-300 ${isSticky ? 'fixed top-0 left-0 z-50' : ''}`}
+      {/* Sticky Navbar */}
+      <div
+        className={`w-full ${isSticky ? 'fixed top-0 left-0 z-50 bg-[#eeeeee] shadow-lg' : 'relative'} transition-all duration-300`}
       >
-        {/* Hamburger Icon with rotation transition */}
-        <span
-          className={`material-icons transition-transform duration-300 ${isMenuOpen ? 'rotate-90' : ''}`}
-        >
-          menu
-        </span>
-      </button>
+        <nav className="flex justify-between items-center p-4 max-w-screen-xl mx-auto">
+          {/* Logo */}
+          <h1 className="text-3xl font-bold font-whitman text-[#333333]">
+            TRIBE.
+          </h1>
 
-      {/* Fixed Menu Items (appear below the button when open) */}
-      {isMenuOpen && (
-        <div
-          className={`fixed top-[60px] left-4 bg-transparent w-48 z-40 transition-all duration-300 opacity-100`}
-        >
-          <ul className="flex flex-col">
-            {["PORTFOLIO", "ABOUT", "CONTACT"].map((text, index) => (
-              <li
-                key={text}
-                className={`p-2 font-whitman ${menuItemsVisible[index] ? 'opacity-100' : 'opacity-0'} transition-opacity duration-500 ease-in-out`}
-              >
-                {/* Button with text shadow to ensure visibility */}
-                <button className="text-[#333333] text-shadow">
-                  {text}
-                </button>
-              </li>
-            ))}
+          {/* Navigation Links */}
+          <ul className="flex space-x-8">
+            <li>
+              <button className="font-whitman text-[#333333] text-lg">
+                About
+              </button>
+            </li>
+            <li>
+              <button className="font-whitman text-[#333333] text-lg">
+                Contact
+              </button>
+            </li>
           </ul>
-        </div>
-      )}
-
-
-
+        </nav>
       </div>
 
       {/* Content */}

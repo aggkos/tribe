@@ -17,7 +17,7 @@ export default function Portfolio({ projects, openModal }) {
 
       {/* Portfolio Section */}
       <section id="portfolio" ref={portfolioRef} className="bg-[#eeeeee]">
-      <div className="mx-8 px-12 lg:mx-16 lg:px-24 text-center">
+      <div className="lg:mx-16 lg:px-24 text-center">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
             {projects.map((project) => (
               <div
@@ -33,7 +33,7 @@ export default function Portfolio({ projects, openModal }) {
                   style={{ aspectRatio: '1', height: 'auto' }} // Make the image square
                 />
                 {/* Overlay for title and description */}
-                <div className="absolute top-0 left-0 p-4 bg-opacity-30 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 group-active:opacity-100">
+                <div className="absolute top-0 left-0 p-4 bg-opacity-30 text-white opacity-100 transition-opacity duration-300 group-active:opacity-100">
                   <p 
                     className="text-lg font-light font-sans text-white mb-8" 
                     style={{
