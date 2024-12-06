@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/tribe/static/css/main.4c455389.css",
+    "main.js": "/tribe/static/js/main.8e197260.js",
+    "static/js/453.3f78d617.chunk.js": "/tribe/static/js/453.3f78d617.chunk.js",
+    "index.html": "/tribe/index.html",
+    "main.4c455389.css.map": "/tribe/static/css/main.4c455389.css.map",
+    "main.8e197260.js.map": "/tribe/static/js/main.8e197260.js.map",
+    "453.3f78d617.chunk.js.map": "/tribe/static/js/453.3f78d617.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.4c455389.css",
+    "static/js/main.8e197260.js"
+  ]
+}
